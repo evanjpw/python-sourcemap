@@ -51,12 +51,13 @@ class SourceMapIndex(object):
     """The indexed sourcemap containing all the Tokens
     and precomputed indexes for searching."""
 
-    def __init__(self, raw, tokens, line_index, index, sources=None):
+    def __init__(self, raw, tokens, line_index, index, sources=None, sources_content=None):
         self.raw = raw
         self.tokens = tokens
         self.line_index = line_index
         self.index = index
         self.sources = sources or []
+        self.sourcesContent = sources_content or []
 
     def lookup(self, line, column):
         try:

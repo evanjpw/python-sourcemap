@@ -111,6 +111,7 @@ class SourceMapDecoder(object):
 
         smap = json.loads(source)
         sources = smap['sources']
+        sourcesContent = smap.get('sourcesContent', [])
         sourceRoot = smap.get('sourceRoot')
         names = list(map(text_type, smap['names']))
         mappings = smap['mappings']
@@ -192,7 +193,7 @@ class SourceMapDecoder(object):
                 # Insert into specific line index
                 line_index[dst_line].append(dst_col)
 
-        return SourceMapIndex(smap, tokens, line_index, index, sources)
+        return SourceMapIndex(smap, tokens, line_index, index, sources, sourcesContent)
 
 
 # Mapping of base64 letter -> integer value.
